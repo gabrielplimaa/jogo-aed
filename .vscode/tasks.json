@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Raylib WSL",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "${workspaceFolder}/jogo-aed/src/main.c",
+                "-o", "${workspaceFolder}/jogo-aed/game",
+                "-I", "${workspaceFolder}/jogo-aed/raylib/src",
+                "-L", "${workspaceFolder}/jogo-aed/raylib/src",
+                "-lraylib",
+                "-lGL",
+                "-lm",
+                "-lpthread",
+                "-ldl",
+                "-lrt",
+                "-lX11"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
