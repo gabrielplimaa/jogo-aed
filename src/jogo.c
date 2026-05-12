@@ -83,12 +83,15 @@ void executarJogo(EstadoJogo *estado) {
 
             moverObjetos(&estado->objetos, estado->velocidade);
 
-            int pontosGanhos = detectarColisao(
+            int vidasPerdidas = 0;
+            int pontosGanhos  = detectarColisao(
                 &estado->objetos,
                 estado->foliao.posX, estado->foliao.posY,
-                estado->foliao.largura, estado->foliao.altura
+                estado->foliao.largura, estado->foliao.altura,
+                &vidasPerdidas
             );
             estado->foliao.pontuacao += pontosGanhos;
+            estado->foliao.vidas     -= vidasPerdidas;
 
             int perdidos = removerObjetosPerdidos(&estado->objetos);
             estado->foliao.vidas -= perdidos;
