@@ -60,14 +60,12 @@ OpcaoMenu exibirMenuPrincipal(void) {
     return MENU_SAIR;
 }
 
-/* ── TELA DE NOME (so chamada ao apertar Jogar) ─────────────────── */
 int telaEntradaNome(char *nomeDestino, int tamanhoMax) {
     char buffer[TAMANHO_NOME] = {0};
     int  cursor = 0;
 
     while (!WindowShouldClose()) {
 
-        /* TAB ou ESC volta ao menu */
         if (IsKeyPressed(KEY_TAB) || IsKeyPressed(KEY_ESCAPE)) return 0;
 
         for (int c = GetCharPressed(); c != 0; c = GetCharPressed()) {
@@ -120,11 +118,9 @@ int telaEntradaNome(char *nomeDestino, int tamanhoMax) {
     return 0;
 }
 
-/* ── RANKING ─────────────────────────────────────────────────────── */
 void telaRanking(const Ranking *ranking) {
     while (!WindowShouldClose()) {
 
-        /* TAB ou ESC volta ao menu */
         if (IsKeyPressed(KEY_TAB) || IsKeyPressed(KEY_ESCAPE)) return;
 
         BeginDrawing();
@@ -151,11 +147,9 @@ void telaRanking(const Ranking *ranking) {
     }
 }
 
-/* ── INSTRUCOES ──────────────────────────────────────────────────── */
 void telaInstrucoes(void) {
     while (!WindowShouldClose()) {
 
-        /* TAB ou ESC volta ao menu */
         if (IsKeyPressed(KEY_TAB) || IsKeyPressed(KEY_ESCAPE)) return;
 
         BeginDrawing();

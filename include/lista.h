@@ -4,13 +4,11 @@
 #include "config.h"
 #include "objeto.h"
 
-/* Nó da lista encadeada — carrega um objeto e aponta para o próximo */
 typedef struct NoLista {
     Objeto          objeto;
     struct NoLista *proximo;
 } NoLista;
 
-/* Cabeça da lista — guarda o ponteiro de início e o total de nós */
 typedef struct {
     NoLista *inicio;
     int      quantidade;

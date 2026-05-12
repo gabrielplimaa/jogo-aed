@@ -69,7 +69,6 @@ void executarJogo(EstadoJogo *estado) {
 
     while (!WindowShouldClose()) {
 
-        /* TAB ou ESC em qualquer fase volta ao menu */
         if (IsKeyPressed(KEY_TAB) || IsKeyPressed(KEY_ESCAPE)) break;
 
         if (estado->fase == FASE_JOGANDO) {
@@ -102,7 +101,6 @@ void executarJogo(EstadoJogo *estado) {
                 estado->foliao.vidas = 0;
                 limparLista(&estado->objetos);
 
-                /* Salva no ranking com o nome coletado antes de jogar */
                 if (!rankingSalvo) {
                     inserirNoRanking(estado->ranking, estado->foliao.pontuacao, estado->nomeJogador);
                     salvarRanking(estado->ranking, CAMINHO_RANKING);
@@ -113,7 +111,6 @@ void executarJogo(EstadoJogo *estado) {
             }
 
         } else {
-            /* FASE_GAME_OVER: ENTER volta ao menu */
             if (IsKeyPressed(KEY_ENTER)) break;
         }
 
