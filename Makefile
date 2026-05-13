@@ -1,5 +1,5 @@
-Makefile - Pega o Frevo!
-Compatível com: Linux, WSL, macOS e Windows (MinGW)
+
+
 CC     = gcc
 CFLAGS = -Wall -Wextra -std=c11 -g -Iinclude
 
@@ -19,18 +19,15 @@ SRCS = $(SRCDIR)/main.c      \
 UNAME := $(shell uname 2>/dev/null || echo Windows)
 
 ifeq ($(UNAME), Darwin)
-    # macOS
-    TARGET  = $(BINDIR)/pega-o-frevo
-    LDFLAGS = -lraylib -framework OpenGL -framework Cocoa -framework IOKit \
-              -framework CoreAudio -framework CoreVideo
+	TARGET  = $(BINDIR)/pega-o-frevo
+	LDFLAGS = -lraylib -framework OpenGL -framework Cocoa -framework IOKit \
+	          -framework CoreAudio -framework CoreVideo
 else ifeq ($(UNAME), Windows)
-    # Windows nativo com MinGW
-    TARGET  = $(BINDIR)/pega-o-frevo.exe
-    LDFLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm
+	TARGET  = $(BINDIR)/pega-o-frevo.exe
+	LDFLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm
 else
-    # Linux / WSL
-    TARGET  = $(BINDIR)/pega-o-frevo
-    LDFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+	TARGET  = $(BINDIR)/pega-o-frevo
+	LDFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 endif
 
 .PHONY: all clean run dirs
@@ -38,13 +35,13 @@ endif
 all: dirs $(TARGET)
 
 dirs:
-    mkdir -p $(BINDIR) data
+	mkdir -p $(BINDIR) data
 
 $(TARGET): $(SRCS)
-    $(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 run: all
-    ./$(TARGET)
+	./$(TARGET)
 
 clean:
-    rm -rf $(BINDIR)
+	rm -rf $(BINDIR)
