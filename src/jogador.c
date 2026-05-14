@@ -11,7 +11,8 @@ void inicializarJogador(Jogador *foliao) {
 }
 
 void moverJogador(Jogador *foliao) {
-    float dt = GetFrameTime(); 
+    float dt = GetFrameTime();
+    if (dt > 0.05f) dt = 0.05f;   // trava em no máximo ~20 fps para evitar saltos
     float deslocamento = VELOCIDADE_JOGADOR * dt;
 
     if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {

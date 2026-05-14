@@ -14,6 +14,7 @@ static int texturesCarregadas = 0;
 
 static int animFrame = 0;
 static int animTimer = 0;
+static int facingRight = 1;
 
 static void carregarTexturas(void) {
     if (texturesCarregadas) return;
@@ -56,15 +57,25 @@ void desenharJogador(const Jogador *foliao) {
                 animTimer = 0;
                 animFrame = (animFrame + 1) % 4;
             }
-            row = (foliao->estadoAtual == ANDANDO_DIREITA) ? 0 : 1;
+            row = 0;
             frame = animFrame;
+            facingRight = (foliao->estadoAtual == ANDANDO_DIREITA);
         } else {
             animFrame = 0;
             animTimer = 0;
             row = 2;
             frame = 0;
         }
-        Rectangle src = { frame * frameWidth, row * frameHeight, frameWidth, frameHeight };
+
+        // Flip horizontally when moving/facing left (negative width in src rect)
+        int viradoEsquerda = (foliao->estadoAtual == ANDANDO_ESQUERDA) ||
+                             (foliao->estadoAtual == PARADO && !facingRight);
+        Rectangle src;
+        if (viradoEsquerda) {
+            src = (Rectangle){ (frame + 1) * frameWidth, row * frameHeight, -frameWidth, frameHeight };
+        } else {
+            src = (Rectangle){ frame * frameWidth, row * frameHeight, frameWidth, frameHeight };
+        }
         DrawTexturePro(texFoliao, src, dest, (Vector2){ 0, 0 }, 0.0f, WHITE);
 
     } else {
