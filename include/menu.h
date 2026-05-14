@@ -11,6 +11,7 @@ typedef enum {
     MENU_SAIR        = 0
 } OpcaoMenu;
 
+void telaAbertura(void);
 OpcaoMenu exibirMenuPrincipal(void);
 void telaRanking(const Ranking *ranking);
 void telaInstrucoes(void);

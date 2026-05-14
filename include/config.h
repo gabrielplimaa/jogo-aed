@@ -1,14 +1,14 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define LARGURA_TELA   800
-#define ALTURA_TELA    600
+#define LARGURA_TELA   720
+#define ALTURA_TELA    720
 #define TITULO_JANELA  "Pega o Frevo!"
 #define FPS_ALVO       60
 
 #define LARGURA_JOGADOR  115
 #define ALTURA_JOGADOR   115
-#define VELOCIDADE_JOGADOR 6.0f
+#define VELOCIDADE_JOGADOR 300.0f
 
 #define LARGURA_OBJETO    64
 #define ALTURA_OBJETO     64

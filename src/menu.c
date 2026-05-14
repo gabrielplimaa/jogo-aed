@@ -19,10 +19,29 @@ static void desenharFundoMenu(Texture2D fundo) {
     }
     DrawRectangle(0, 0, LARGURA_TELA, ALTURA_TELA, (Color){0, 0, 0, 140});
 }
+void telaAbertura(void) {
+    Texture2D logo = LoadTexture("sprites/tela_inicio.png"); 
+
+    float escalaX = (float)LARGURA_TELA / logo.width;
+    float escalaY = (float)ALTURA_TELA / logo.height;
+
+    while (1) {
+        if (IsKeyPressed(KEY_ENTER) || WindowShouldClose()) break;
+
+        BeginDrawing();
+        
+            ClearBackground(BLACK);
+            DrawTextureEx(logo, (Vector2){ 0, 0 }, 0.0f, escalaX > escalaY ? escalaX : escalaY, WHITE);
+            
+        EndDrawing();
+    }
+
+    UnloadTexture(logo);
+}
 
 OpcaoMenu exibirMenuPrincipal(void) {
     int opcaoAtual = 1;
-    Texture2D fundo = LoadTexture("sprites/cenario.jpeg");
+    Texture2D fundo = LoadTexture("sprites/cenario.png");
 
     while (!WindowShouldClose()) {
 
@@ -90,7 +109,7 @@ OpcaoMenu exibirMenuPrincipal(void) {
 int telaEntradaNome(char *nomeDestino, int tamanhoMax) {
     char buffer[TAMANHO_NOME] = {0};
     int  cursor = 0;
-    Texture2D fundo = LoadTexture("sprites/cenario.jpeg");
+    Texture2D fundo = LoadTexture("sprites/cenario.png");
 
     while (!WindowShouldClose()) {
 

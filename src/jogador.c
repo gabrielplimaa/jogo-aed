@@ -11,11 +11,14 @@ void inicializarJogador(Jogador *foliao) {
 }
 
 void moverJogador(Jogador *foliao) {
+    float dt = GetFrameTime(); 
+    float deslocamento = VELOCIDADE_JOGADOR * dt;
+
     if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
-        foliao->posX -= VELOCIDADE_JOGADOR;
+        foliao->posX -= deslocamento;
         foliao->estadoAtual = ANDANDO_ESQUERDA;
     } else if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
-        foliao->posX += VELOCIDADE_JOGADOR;
+        foliao->posX += deslocamento;
         foliao->estadoAtual = ANDANDO_DIREITA;
     } else {
         foliao->estadoAtual = PARADO;

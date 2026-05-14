@@ -7,7 +7,13 @@
 int main(void) {
     InitWindow(LARGURA_TELA, ALTURA_TELA, TITULO_JANELA);
     SetTargetFPS(FPS_ALVO);
+    telaAbertura();
 
+    while (IsKeyDown(KEY_ENTER)) {
+        BeginDrawing();
+        EndDrawing();
+    }
+    
     Ranking ranking;
     carregarRanking(&ranking, CAMINHO_RANKING);
 

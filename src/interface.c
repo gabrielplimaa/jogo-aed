@@ -17,8 +17,8 @@ static int animTimer = 0;
 
 static void carregarTexturas(void) {
     if (texturesCarregadas) return;
-    texFundo     = LoadTexture("sprites/cenario.jpeg");
-    texFoliao    = LoadTexture("sprites/foli\xc3\xa3o.png");
+    texFundo     = LoadTexture("sprites/cenario.png");
+    texFoliao    = LoadTexture("sprites/foliao.png");
     texSombrinha = LoadTexture("sprites/sombrinha.png");
     texMascara   = LoadTexture("sprites/mascara.png");
     texZabumba   = LoadTexture("sprites/zabumba.png");
@@ -43,27 +43,33 @@ void desenharFundo(void) {
 
 void desenharJogador(const Jogador *foliao) {
     carregarTexturas();
-    Rectangle dest = {foliao->posX, foliao->posY, foliao->largura, foliao->altura};
-    if (texFoliao.id != 0) {
-        int row, frame;
+    Rectangle dest = { foliao->posX, foliao->posY, (float)foliao->largura, (float)foliao->altura };
+    if (texFoliao.id > 0) {
+        float frameWidth = 125.0f;
+        float frameHeight = 125.0f;
+        int row = 0;
+        int frame = 0;
+
         if (foliao->estadoAtual == ANDANDO_DIREITA || foliao->estadoAtual == ANDANDO_ESQUERDA) {
             animTimer++;
-            if (animTimer >= 7) {
+            if (animTimer >= 10) {
                 animTimer = 0;
                 animFrame = (animFrame + 1) % 4;
             }
-            row   = (foliao->estadoAtual == ANDANDO_DIREITA) ? 0 : 1;
+            row = (foliao->estadoAtual == ANDANDO_DIREITA) ? 0 : 1;
             frame = animFrame;
         } else {
             animFrame = 0;
             animTimer = 0;
-            row   = 2;
+            row = 2;
             frame = 0;
         }
-        Rectangle src = {frame * 125.0f, row * 125.0f, 125.0f, 125.0f};
-        DrawTexturePro(texFoliao, src, dest, (Vector2){0, 0}, 0.0f, WHITE);
+        Rectangle src = { frame * frameWidth, row * frameHeight, frameWidth, frameHeight };
+        DrawTexturePro(texFoliao, src, dest, (Vector2){ 0, 0 }, 0.0f, WHITE);
+
     } else {
         DrawRectangleRec(dest, BLUE);
+        DrawText("Sprite Error", (int)foliao->posX, (int)foliao->posY - 20, 10, RED);
     }
 }
 
